@@ -1,0 +1,31 @@
+{
+  "action": "emailReferral",
+  "fName": "Nam",
+  "lName": "Nguyen",
+  "emailAddress": "nlnam@fossil.com",
+  "eventObject": null,
+  "responseObject": {},
+  "requestObject": {
+      "promoURL": null,
+      "refereeEmailList": ["vule@fossil.com", "hong@fossil.com"],
+      "userId": null,
+      "refereeEmailId": null,
+      "socialProvider": null,
+      "refereeURL": null,
+      "isEmailSignUp": true,
+      "promoName": "SUP_DUAL_10D_FOS_US_091817-10202042",
+      "referralTxt": "If you love color like I do, you’ll love Fossil’s newest hues and the chance to shop them with $10 off. And good news, when you shop, I’ll save $10 too!",
+      "userType": "G"
+  },
+  "errorObject": {},
+  "refereeEmailIdList": {},
+  "emailMessage": null,
+  "refereeEmailAddress": null,
+  "socialProvider": null,
+  "logonPassword": null,
+  "errors": {},
+  "zinfo_generatedAt": null,
+  "zinfo_currency": null,
+  "zinfo_country": null,
+  "zinfo_locale": null
+}
