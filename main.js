@@ -1,41 +1,29 @@
-window.URL = window.URL || window.webkitURL
+const dropbox = document.getElementById('drop-box')
 
-const fileSelect = document.getElementById('fileSelect')
-const fileElem = document.getElementById('fileElem')
-const fileList = document.getElementById('fileList')
+function dragenter(e) {
+  e.stopPropagation()
+  e.preventDefault()
+}
 
-fileSelect.addEventListener(
-  'click',
-  (e) => {
-    if (fileElem) {
-      fileElem.click()
-    }
-    e.preventDefault() // prevent navigation to "#"
-  },
-  false,
-)
+function dragover(e) {
+  e.stopPropagation()
+  e.preventDefault()
+}
 
 function handleFiles(files) {
-  if (!files.length) {
-    fileList.innerHTML = '<p>No files selected!</p>'
-  } else {
-    fileList.innerHTML = ''
-    const list = document.createElement('ul')
-    fileList.appendChild(list)
-    for (let i = 0; i < files.length; i++) {
-      const li = document.createElement('li')
-      list.appendChild(li)
-
-      const img = document.createElement('img')
-      img.src = window.URL.createObjectURL(files[i])
-      img.height = 60
-      img.onload = function () {
-        window.URL.revokeObjectURL(this.src)
-      }
-      li.appendChild(img)
-      const info = document.createElement('span')
-      info.innerHTML = `${files[i].name}: ${files[i].size} bytes`
-      li.appendChild(info)
-    }
-  }
+  console.log(files)
 }
+
+function drop(e) {
+  e.stopPropagation()
+  e.preventDefault()
+
+  const dt = e.dataTransfer
+  const { files } = dt
+
+  handleFiles(files)
+}
+
+dropbox.addEventListener('dragenter', dragenter, false)
+dropbox.addEventListener('dragover', dragover, false)
+dropbox.addEventListener('drop', drop, false)

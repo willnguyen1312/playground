@@ -10,14 +10,8 @@
 </head>
 
 <body>
-    <!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications -->
-
-    <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
-    <a href="#" id="fileSelect">Select some files</a>
-    <div id="fileList">
-        <p>No files selected!</p>
+    <div draggable="true" id="drop-box">
     </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="main.js"></script>
