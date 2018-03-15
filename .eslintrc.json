@@ -3,5 +3,11 @@
   "rules": {
     "semi": ["error", "never"],
     "no-console": "off"
+  },
+  "globals": {
+    "Modernizr": true
+  },
+  "env": {
+    "browser": true
   }
 }
