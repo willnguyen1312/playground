@@ -1,34 +1,25 @@
-const firstArr = [1, 3, 6]
-const secondArr = [2, 5, 6, 7]
+import { readFile, writeFile } from 'fs'
+import { promisify } from 'util'
 
-/**
- *
- *
- * @param {Array<Number>} first
- * @param {Array<Number>} second
- */
-const merge = (first, second) => {
-  const result = []
-  let i = 0
-  let j = 0
+const read = promisify(readFile)
+const write = promisify(writeFile)
 
-  while (i < first.length && j < second.length) {
-    if (first[i] < second[j]) {
-      result.push(first[i])
-      i += 1
-    } else {
-      result.push(second[j])
-      j += 1
-    }
+// eslint-disable-next-line
+async function exe(fileName) {
+  try {
+    const data = await read(fileName, { encoding: 'utf-8' })
+    return data.split('\n').slice(1)
+  } catch (error) {
+    console.log(error)
   }
-
-  if (i < first.length) {
-    result.push(...first.slice(i))
-  } else {
-    result.push(...second.slice(j))
-  }
-
-  return result
 }
 
-console.log(merge(firstArr, secondArr))
+const sum = (data) => {
+  const [first, second] = data.split(' ')
+  return +first + +second
+}
+
+exe('./B.in').then(async (data) => {
+  const result = data.map(item => sum(item)).join('\n')
+  await write('./B.out', result)
+})
