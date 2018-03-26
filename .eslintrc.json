@@ -3,7 +3,10 @@
   "parser": "babel-eslint",
   "rules": {
     "semi": ["error", "never"],
-    "no-console": "off"
+    "no-console": "off",
+    "no-unused-expressions": "off",
+    "func-names": "off",
+    "camelcase": "off"
   },
   "globals": {
     "Modernizr": true

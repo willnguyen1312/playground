@@ -11,6 +11,11 @@
     "eslint-plugin-import": "^2.9.0"
   },
   "dependencies": {
+    "benchmark": "^2.1.4",
     "ramda": "^0.25.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "bm": "node benchmark.js"
   }
 }

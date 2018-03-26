@@ -1,25 +1,26 @@
-import { readFile, writeFile } from 'fs'
-import { promisify } from 'util'
+const arr = [1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 4]
 
-const read = promisify(readFile)
-const write = promisify(writeFile)
-
-// eslint-disable-next-line
-async function exe(fileName) {
-  try {
-    const data = await read(fileName, { encoding: 'utf-8' })
-    return data.split('\n').slice(1)
-  } catch (error) {
-    console.log(error)
+const uniqueArr_immu = ar =>
+  ar.reduce((acc, cur) => {
+    if (acc.indexOf(cur) === -1) {
+      acc.push(cur)
+    }
+    return acc
+  }, [])
+const uniqueArr_mu = (ar) => {
+  const result = []
+  for (let i = 0; i < ar.length; i += 1) {
+    if (result.indexOf(ar[i]) === -1) {
+      result.push(ar[i])
+    }
   }
+  return result
 }
 
-const sum = (data) => {
-  const [first, second] = data.split(' ')
-  return +first + +second
-}
+const built_in = ar => Array.from(new Set(ar))
 
-exe('./B.in').then(async (data) => {
-  const result = data.map(item => sum(item)).join('\n')
-  await write('./B.out', result)
-})
+module.exports = {
+  uniqueArr_immu,
+  built_in,
+  uniqueArr_mu,
+}
