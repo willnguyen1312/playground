@@ -6,7 +6,8 @@
     "no-console": "off",
     "no-unused-expressions": "off",
     "func-names": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-restricted-syntax": "off"
   },
   "globals": {
     "Modernizr": true

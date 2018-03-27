@@ -1,26 +1,30 @@
-const arr = [1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 4]
+function resolveAfter2Seconds(stuff) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(`yeah${stuff}`)
+      resolve(stuff)
+    }, 1000)
+  })
+}
 
-const uniqueArr_immu = ar =>
-  ar.reduce((acc, cur) => {
-    if (acc.indexOf(cur) === -1) {
-      acc.push(cur)
-    }
-    return acc
-  }, [])
-const uniqueArr_mu = (ar) => {
-  const result = []
-  for (let i = 0; i < ar.length; i += 1) {
-    if (result.indexOf(ar[i]) === -1) {
-      result.push(ar[i])
-    }
+const arr = [1, 2, 3, 4, 5]
+
+// async function asyncCall() {
+//   console.log('calling')
+//   const result = await resolveAfter2Seconds()
+//   console.log(result)
+//   // expected output: "resolved"
+// }
+
+// asyncCall()
+
+async function* asyncGenerator() {
+  for (const item of arr) {
+    yield resolveAfter2Seconds(item)
   }
-  return result
 }
-
-const built_in = ar => Array.from(new Set(ar))
-
-module.exports = {
-  uniqueArr_immu,
-  built_in,
-  uniqueArr_mu,
-}
+(async () => {
+  for await (const i of asyncGenerator()) {
+    console.log(i)
+  }
+})().catch(e => console.error(e))
