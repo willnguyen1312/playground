@@ -13,8 +13,8 @@ const arrAllowance = []
 
 const findItem = (nodeList, index) => {
   const foundPrice = nodeList[
-    index
-  ].parentNode.parentNode.parentNode.parentNode.parentNode.previousElementSibling
+      index
+    ].parentNode.parentNode.parentNode.parentNode.parentNode.previousElementSibling
     .querySelector("h3")
     .innerText.trim()
 
