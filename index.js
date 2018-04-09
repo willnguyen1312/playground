@@ -1,42 +1,67 @@
-const arrOfStock = [1, 4, 5, 8, 1, 2]
+const nodeList = Array.from(document.querySelectorAll(".txt-blue.font16.bold"))
 
+const dataBack = {}
+
+const priceList = nodeList
+  .map(x => x.innerText)
+  .map(x => x.substring(0, x.indexOf(",")))
+  .map(Number)
+
+const max = `${Math.max(...priceList)},000`
+
+const arrAllowance = []
+
+const findItem = (nodeList, index) => {
+  const foundPrice = nodeList[
+    index
+  ].parentNode.parentNode.parentNode.parentNode.parentNode.previousElementSibling
+    .querySelector("h3")
+    .innerText.trim()
+
+  const foundImageUrl = nodeList[
+    index
+  ].parentNode.parentNode.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.querySelector(
+    "img"
+  ).src
+
+  const item = {
+    price: foundPrice,
+    name: `${priceList[index]},000`,
+    imageUrl: foundImageUrl
+  }
+  return item
+}
+
+const findMax = () => {
+  for (let i = 0; i < nodeList.length; i++) {
+    if (nodeList[i].innerText === max) {
+      const item = findItem(nodeList, i)
+      dataBack.max = item
+      break
+    }
+  }
+}
 /**
  *
  *
- * @param {Number} arr
+ * @param {Number} budget
  */
-function getMaxProfit(stockPricesYesterday) {
-  if (stockPricesYesterday.length < 2) {
-    throw new Error('Getting a profit requires at least 2 prices')
+function withBudget(budget, range = 10) {
+  const lowerBound = budget - range
+  if (budget) {
+    const search = `${budget},000`
+    let count = 1
+
+    for (let i = 0; i < nodeList.length; i++) {
+      if (priceList[i] >= lowerBound && priceList[i] <= budget && count % 2) {
+        const item = findItem(nodeList, i)
+        arrAllowance.push(item)
+      }
+      count += 1
+    }
+    dataBack.allowance = arrAllowance
   }
-
-  // we'll greedily update minPrice and maxProfit, so we initialize
-  // them to the first price and the first possible profit
-  let minPrice = stockPricesYesterday[0]
-  let maxProfit = stockPricesYesterday[1] - stockPricesYesterday[0]
-
-  // start at the second (index 1) time
-  // we can't sell at the first time, since we must buy first,
-  // and we can't buy and sell at the same time!
-  // if we started at index 0, we'd try to buy *and* sell at time 0.
-  // this would give a profit of 0, which is a problem if our
-  // maxProfit is supposed to be *negative*--we'd return 0.
-  for (let i = 2; i < stockPricesYesterday.length; i += 1) {
-    const currentPrice = stockPricesYesterday[i]
-
-    // see what our profit would be if we bought at the
-    // min price and sold at the current price
-    const potentialProfit = currentPrice - minPrice
-
-    // update maxProfit if we can do better
-    maxProfit = Math.max(maxProfit, potentialProfit)
-
-    // update minPrice so it's always
-    // the lowest price we've seen so far
-    minPrice = Math.min(minPrice, currentPrice)
-  }
-
-  return maxProfit > 0 ? maxProfit : 'Not a chance'
 }
 
-console.log(getMaxProfit([5, 1, 6, 7]))
+findMax()
+withBudget(60)
