@@ -2,5 +2,7 @@
   "editor.formatOnSave": true,
   "prettier.eslintIntegration": true,
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "javascript.validate.enable": false,
+  "eslint.enable": true
 }
