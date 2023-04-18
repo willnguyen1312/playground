@@ -1,0 +1,10 @@
+{
+  "name": "playground",
+	"private": true,
+	"scripts": {
+		"react": "pnpm --filter react dev",
+		"vue": "pnpm --filter vue dev",
+		"vanilla": "pnpm --filter vanilla dev"
+	},
+  "license": "MIT"
+}
