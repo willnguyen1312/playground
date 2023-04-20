@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useBattery} from 'react-use';
 
-function App() {
-  const [count, setCount] = useState(0)
+const Demo = () => {
+  const batteryState = useBattery();
+
+  if (!batteryState.isSupported) {
+    return (
+      <div>
+        <strong>Battery sensor</strong>: <span>not supported</span>
+      </div>
+    );
+  }
+
+  if (!batteryState.fetched) {
+    return (
+      <div>
+        <strong>Battery sensor</strong>: <span>supported</span> <br />
+        <strong>Battery state</strong>: <span>fetching</span>
+      </div>
+    );
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      <strong>Battery sensor</strong>:&nbsp;&nbsp; <span>supported</span> <br />
+      <strong>Battery state</strong>: <span>fetched</span> <br />
+      <strong>Charge level</strong>:&nbsp;&nbsp; <span>{ (batteryState.level * 100).toFixed(0) }%</span> <br />
+      <strong>Charging</strong>:&nbsp;&nbsp; <span>{ batteryState.charging ? 'yes' : 'no' }</span> <br />
+      <strong>Charging time</strong>:&nbsp;&nbsp;
+      <span>{ batteryState.chargingTime ? batteryState.chargingTime : 'finished' }</span> <br />
+      <strong>Discharging time</strong>:&nbsp;&nbsp; <span>{ batteryState.dischargingTime }</span>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default Demo;
