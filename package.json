@@ -1,11 +1,12 @@
 {
   "name": "playground",
-	"private": true,
-	"scripts": {
-		"react": "pnpm --filter react dev",
-		"vue": "pnpm --filter vue dev",
-		"vanilla": "pnpm --filter vanilla dev",
-		"nest": "pnpm --filter nest-server dev"
-	},
+  "private": true,
+  "scripts": {
+    "react": "pnpm --filter react dev",
+    "vue": "pnpm --filter vue dev",
+    "vanilla": "pnpm --filter vanilla dev",
+    "nest": "pnpm --filter nest-server dev",
+    "vitest": "pnpm --filter vitest test"
+  },
   "license": "MIT"
 }
