@@ -4,7 +4,8 @@
 	"scripts": {
 		"react": "pnpm --filter react dev",
 		"vue": "pnpm --filter vue dev",
-		"vanilla": "pnpm --filter vanilla dev"
+		"vanilla": "pnpm --filter vanilla dev",
+		"nest": "pnpm --filter nest-server dev"
 	},
   "license": "MIT"
 }
